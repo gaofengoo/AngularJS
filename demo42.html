@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ng-class详解</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <!-- 一 ng-class使用字符串 -->
+    <div class="well">
+	    <div class="form-group">
+	        <input type="text" placeholder="input your class type" ng-model="textType" class="form-control" />
+	    </div>
+    <div ng-class="textType" style="font-size: x-large;">xpy0928 from cnblogs</div>
+
+    <!-- 二 ng-class使用数组 -->
+    <div class="well">
+	    <input type="text" ng-model="styleOne" class="form-control">
+	    <input type="text" ng-model="styleTwo" class="form-control">
+    <div ng-class="[styleOne, styleTwo]" style="font-size: x-large;">xpy0928 from cnblogs</div>
+
+    <!-- 三 ng-class使用评估表达式 -->
+	<div class="well">
+	    <input type="checkbox" ng-model="danger"> Good luck to u?
+	    <input type="checkbox" ng-model="wrong"> u are wrong?
+	    <br />
+		<span ng-class="{ 'btn-danger': danger, 'btn-success': wrong }" style="font-size: x-large;">
+		    xpy0928 from cnblogs
+		</span>
+	</div>
+
+	<!-- 四 在显示列表中，给不同行着色 -->
+	<div class="well">
+	    <ul>
+	        <li ng-class="{ 'text-info': $even, 'text-danger': $odd }" ng-repeat="item in items">{{ item.name }}</li>
+	    </ul>
+	</div>
+
+	<!-- 五 ng-class使用三元表达式 -->
+	<div class="well">
+	    <ul>
+	        <li ng-class="$even ? 'btn-info' : 'btn-danger'" ng-repeat="item in items">{{ item.name }}</li>
+	    </ul>
+	</div>
+
+	<!-- 六 用法和五类似 -->
+	<a ng-click="navFunc(item.title)" ng-class="{true:'long-9999',false:'long-0000'}[navActionA==item.title]">{{item.title}}</a>
+
+
+</body>
+</html>

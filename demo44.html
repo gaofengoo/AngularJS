@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>导航栏选中</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript">
+    	var app = angular.module("app", []);
+    	app.controller("myCtrl", function($scope){
+
+    		$scope.headClick = function(m){
+    			// console.log($scope.A, $scope.B, $scope.C);
+    			
+    			if($scope.A == m){
+    				$scope.A = !m;
+    				$scope.B = !m;
+    				$scope.C = !m;
+    			}else{
+    				$scope.A = m;
+    				$scope.B = m;
+    				$scope.C = m;
+    			}
+    		};
+
+    		$scope.childClick = function(b){
+    			// if($scope.C == b){
+    				$scope.A = b;
+    				$scope.C = b;
+    			// }
+    			console.log(b);
+    		};	
+
+    		// $scope.heads.forEach(function(e){
+    		// 	e.
+    		// });
+
+
+    		// var init = function(){
+    			$scope.heads = [
+    				{
+    					"name":"导航一",
+    					"child1":[
+    						{
+    							"childName":"a"
+    						},{
+    							"childName":"b"
+    						},{
+    							"childName":"c"
+    						}
+    					]
+    				},{
+    					"name":"导航二",
+    					"child1":[
+    						{
+    							"childName":"d"
+    						},{
+    							"childName":"e"
+    						},{
+    							"childName":"f"
+    						}
+    					]
+    				},{
+    					"name":"导航三",
+    					"child1":[
+    						{
+    							"childName":"g"
+    						},{
+    							"childName":"h"
+    						},{
+    							"childName":"i"
+    						}
+    					]
+    				}
+    			]
+    		// };
+
+    		// init();
+    	});
+    </script>
+<style type="text/css">
+	.a{
+		background: #f00;
+	}
+	.b{
+		color: #f00;
+	}
+</style>
+
+</head>
+<body ng-controller="myCtrl">
+	<ul>
+		<li ng-repeat="head in heads" ng-click="headClick(head.name)" >
+			<span ng-class="A == head.name ? 'a' : '' ">{{head.name}}</span>
+			<ul ng-show="B === head.name">
+				<li ng-repeat="children in head.child1" ng-click="childClick(children.childName)" 
+				ng-class="b">
+					<b>{{children.childName}}</b>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+
+    
+</body>
+</html>

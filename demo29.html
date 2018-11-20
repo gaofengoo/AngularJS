@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="routingDemoApp">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>demo29</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-route.min.js"></script>
+</head>
+<body>
+    <ul>
+    	<li><a href="#!/">首页</a></li>	
+    	<li><a href="#!/computers">电脑</a></li>
+    	<li><a href="#!/printers">打印机</a></li>
+    	<li><a href="#!/other">其他</a></li>
+    </ul>
+
+    <div ng-view></div>
+
+    <script type="text/javascript">	
+    	var routingDemoApp = angular.module('routingDemoApp',['ngRoute']);
+    	routingDemoApp.config(['$routeProvider',function($routeProvider) {
+    		$routeProvider
+    		.when('/',{template:'首页page'})
+    		.when('/computers',{template:'电脑page'})
+    		.when('/printers',{template:'打印机page'})
+    		.otherwise({redirectoTo:'/'})
+    	}]);
+    </script>
+</body> 
+</html>

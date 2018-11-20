@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ng-class demo</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	.info{
+		background: #0f0;
+	}
+	.danger{
+		background: #f00;
+	}
+	.a{
+		color: #f00
+	}
+	.b{
+		color: #000
+	}
+	.c{
+		color: #0f0
+	}
+	.border{
+		border:1px solid #f00;
+	}
+	.danger{
+		background: #0f0;
+	}
+	.success{
+		background: #f00;
+	}
+</style>
+</head>
+<body ng-controller="myCtrl">
+	<!-- 数组样式 -->
+	<!-- <input type="text" value="1" ng-model="aa" />
+	<input type="text" value="2" ng-model="bb" />
+	<div ng-class="[aa, bb]" ng-repeat="a in as">{{a.html}}</div> -->
+
+	<!-- 单行双行样式 -->
+    <!-- <div ng-class="{'info':$even, 'danger':$odd}" ng-repeat="a in as">{{a.html}}</div> -->
+
+    <!-- 评估表达式 -->
+    <input type="text" ng-model="danger" />
+    <input type="text" ng-model="wrong" />
+    <span ng-click="{'danger':danger, 'success':wrong}">11111111</span>
+
+
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript">
+    	var app = angular.module("app",[]);
+    	app.controller("myCtrl",function($scope){
+    		$scope.as = [
+    			{
+    				"html":"a"
+    			},{
+    				"html":"b"
+    			},{
+    				"html":"c"
+    			},{
+    				"html":"d"
+    			}
+    		]
+    	});
+    </script>
+</body>
+</html>

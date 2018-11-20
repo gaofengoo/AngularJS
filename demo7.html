@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>deom7</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <div><input type="text" name="uname" id="uname" /></div>
+    <div><span id="info"></span></div>
+    <script type="text/javascript">
+    	var uname = document.getElementById('uname');
+    	var info = document.getElementById('info');
+    	uname.onkeyup = function(){
+    		info.innerHTML = uname.value;
+    	}
+    </script>
+</body>
+</html>

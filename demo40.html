@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/angular.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module('myApp', [])
+        app.controller("SomeController", function($scope) {
+            $scope.navFunc = function(arg) {
+                if($scope.navActionA == arg) {
+                    $scope.navActionA = !arg;
+                    $scope.navActionB = !arg;
+                    $scope.navActionC = !arg;
+
+                }else{
+                    $scope.navActionA = arg;
+                    $scope.navActionB = arg;
+                    $scope.navActionC = arg;
+
+                }
+                // console.log(arg);
+            };
+            $scope.navFunc1 = function(b) {
+                $scope.navActionA = b;
+                $scope.navActionB = b;
+                console.log(arg);
+            };
+            
+            $scope.expanders = [{
+                title: '修改资料',
+                text: [
+                    {title: 'aaaaaaaaaaaaaa'},
+                    {title: 'bbbbbbbbbbbbbbb'},
+                    {title: 'ccccccccccccccc'}
+                ]
+            }, {
+                title: '修改密码',
+                text: [
+                    {title: 'dddddddd'},
+                    {title: 'eeeeeeeeeee'},
+                    {title: 'fffffffffff'}
+                ]
+            }, {
+                title: '添加用户',
+                text: [
+                    {title: 'gggggggggggggg'},
+                    {title: 'hhhhhhhhhhhhhh'},
+                    {title: 'yyyyyyyyyyyyyy'}
+                ]
+            }];
+        });
+    </script>
+    <style type="text/css">
+        li {
+            padding: 0.1em 1em;
+            list-style: none;
+            outline-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .long-9999 {
+            padding: 0.1em 1em;
+            background-color: #0A90DB;
+            color: white;
+        }
+        .long-8888 {
+            padding: 0.1em 1em;
+            background-color: #999999; 
+            color: white;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller='SomeController'>
+<div>
+    <ul id="catalogContainer">
+        <li ng-repeat="item in expanders">
+            <a ng-click="navFunc(item.title)" ng-class="{true:'long-9999',false:'long-0000'}[navActionA==item.title]">{{item.title}}</a>
+            <ul ng-show="navActionC === item.title">
+                <li ng-repeat="children in item.text" ng-click="navFunc1(children.title)" ng-class="{true:'long-8888'}[navActionB==children.title]">
+                    <a>{{children.title}}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

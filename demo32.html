@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>demo32</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body ng-controller="formCtrl">
+    <input type="text" ng-model="firstname" />
+
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript">
+    	var app = angular.module('app',[]);
+    	app.controller('formCtrl', function($scope){
+    		$scope.firstname = 'John';
+    	});
+    	// console.log("log");
+    	// console.info("info");
+    </script>
+</body>
+</html>

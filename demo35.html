@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>demo35</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body ng-controller="myCtrl">
+    <ul ng-repeat="x in m">
+    	<li>{{x.number}}</li>
+    	<li>{{x.zimu}}</li>
+    </ul>
+
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript">
+    	var app = angular.module("app", []);
+    	app.controller("myCtrl", function($scope){
+    		$scope.m = [
+    			{
+    				"number":"1",
+    				"zimu":"a"
+    			},{
+    				"number":"2",
+    				"zimu":"b"
+    			},{
+    				"number":"3",
+    				"zimu":"c"
+    			},{
+    				"number":"4",
+    				"zimu":"d"
+    			}]
+    	});
+    </script>
+</body>
+</html>

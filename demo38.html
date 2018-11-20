@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>demo38</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body ng-controller="myCtrl">
+
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript">
+    	var app = angular.module("app", []);
+    	app.controller("myCtrl", function($scope){
+
+    		// 针对普通数组 
+    		var array = {key1:"value1", key2:"value2", key3:"value3"};
+    		angular.forEach(array, function(v,k){
+    			console.log(k + "---->" + v);
+    		});
+
+    		// 针对数组对象
+    		var array2 = [
+    			{
+    				"name":"1"
+    			},{
+    				"name":"2"
+    			},{
+    				"name":"3"
+    			}
+    		];
+    		array2.forEach(function(value, index){
+    			console.log(index + "--->" + value.name);
+    		});
+
+    	});
+    </script>
+</body>
+</html>

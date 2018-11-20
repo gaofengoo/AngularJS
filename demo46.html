@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>angularjs 添加 删除</title>
+	<style>
+	table tr:nth-child(even){ background: #eee;}
+	tr button{ width: 30px;}
+</style>
+
+<!--导入文件-->
+<!-- <script src="js/jquery.js"></script> -->
+<script src="js/angular.min.js"></script>
+<script>
+	var sapp=angular.module("myapp",[]);
+	sapp.controller("con",function($scope){
+		$scope.stus=[];
+			// 添加  进行判断
+			$scope.add=function(){
+
+				if ($scope.uname==""|| $scope.uname.length<=2 || $scope.uname.length>20) {
+					alert("商品名称输入有误！");
+				}else if($scope.typee.length<=2 || $scope.typee.length>20 || $scope.typee==""){
+					alert("商品类型输入有误！");
+				}else if($scope.price<0 || $scope.price==undefined){
+					alert("商品价格输入有误！");
+				}else{
+					// 默认数量为1
+					if($scope.count==null){
+						$scope.count=1;
+					}
+					var good={
+						name:$scope.uname,
+						type:$scope.typee,
+						price:$scope.price,
+						count:$scope.count
+					};
+					$scope.stus.(good);
+				}
+			}
+			// 删除的方法
+			$scope.del=function(e){
+			// 判断是否删除
+			if (confirm("确认删除吗？")) {
+				$scope.stus.splice(e,1);
+			}
+		}
+
+		$scope.sum=function(){
+			var zong1=0;
+			for (var i in $scope.stus) {
+				zong1=zong1+$scope.stus[i].price*$scope.stus[i].count;
+			}
+			return zong1;
+		}
+
+		$scope.num=function(cc,index){
+			if($scope.stus[index].count>=1){
+				$scope.stus[index].count=$scope.stus[index].count+cc;
+			}else{
+				if(confirm("是否要删除该商品?")){
+					$scope.stus.splice(index,1);
+				}
+			}
+
+		}
+
+	})
+</script>
+</head>
+<body ng-app="myapp" ng-controller="con">
+	商品名称:<input ng-model="uname"/>
+	类型:<input ng-model="typee"/>
+	价格:<input type="number" ng-model="price"/>
+	数量:<input type="number" ng-model="count"/>     
+	<button ng-click="add()">添加</button>
+
+	<table width="800" border="1" cellspacing="0">
+		<tr style="background: #999;">
+			<th>商品序号</th>
+			<th>商品名称</th>
+			<th>商品价格</th>
+			<th>商品数量</th>
+			<th>商品类型</th>
+			<th>小计</th>
+			<th>操作</th>
+		</tr>
+		<tr ng-repeat="a in stus">
+			<td>{{$index}}</td>
+			<td>{{a.name}}</td>
+			<td>{{a.price}}</td>
+			<td><button ng-click="num(-1,$index)">-</button><input style="width: 30px;" ng-model="a.count" /><button ng-click="num(1,$index)">+</button></td>
+			<td>{{a.type}}</td>
+			<td>{{a.price*a.count}}</td>
+			<td><button ng-click="del($index)" style="width: 60px;">删除</button></td>
+		</tr>
+		<p style="margin-left: 600px;">总计：{{sum()}}</p>
+	</table> 
+</body>
+</html>
