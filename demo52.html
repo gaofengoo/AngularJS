@@ -2,17 +2,132 @@
 <html ng-app="app">
 <head>
     <title>多图片上传预览</title>
-    <script src="js/angular.js" type="text/javascript"></script>
+    <style type="text/css">
+    .fileupload {
+        width: 100px;
+        height: 100px;
+        border: 1px dotted #ccc;
+        display: inline-block;
+    }
+    .fileupload-icon {
+        font-size:32px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+</style>
 </head>
 <body ng-controller="myCtrl">
-    
+    <div>
+        <div class="fileupload pos-rlt" ng-repeat="imageSrc in imgshows">
+            <img ng-src="{{imageSrc}}" style="max-width:200px;max-height:300px;margin:0 auto; display:block;" class="pos-rlt"  width=100%; height=100%;/>
+            <i class="icon ion-close-circled" style="position: absolute; top:5px; right: 5px" ng-click="uploadimg_del($index, imgshows)"></i>
+        </div>
+        <div class="fileupload pos-rlt  clear" >
+            <i class="icon ion-plus-round fileupload-icon"></i>
+            <input type="file"  style="display:inline-block; width: 100%; height: 100%; opacity:0" name="upload_img"  file="upload_img"  placeholder="选择图片" accept="image/png,image/gif,image/jpeg,image/jpg"   >
+        </div>
+    </div>
 
+    <script src="js/angular.js" type="text/javascript"></script>
     <script type="text/javascript">
         var app = angular.module("app",[]);
-        app.controller("myCtrl",function($scope)
-            {
-                
-            });
-    </script>
-</body>
-</html>
+        app.controller("myCtrl",function($scope){
+
+
+        });
+
+        // 图片上传获取返回的url
+        app.factory('fileReader', ["$q", "$log", function($q, $log){
+            var onLoad = function(reader, deferred, scope) {
+                return function () {
+                    scope.$apply(function () {
+                        deferred.resolve(reader.result);
+                    });
+                };
+            };
+
+            var onError = function (reader, deferred, scope) {
+                return function () {
+                    scope.$apply(function () {
+                        deferred.reject(reader.result);
+                    });
+                };
+            };
+
+            var getReader = function(deferred, scope) {
+                var reader = new FileReader(); //fileReader
+                reader.onload = onLoad(reader, deferred, scope);
+                reader.onerror = onError(reader, deferred, scope);
+                return reader;
+            };
+
+            var readAsDataURL = function (file, scope) {
+                var deferred = $q.defer();
+                var reader = getReader(deferred, scope);     
+                reader.readAsDataURL(file);    
+                return deferred.promise;
+
+            };
+
+            return {
+                readAsDataUrl: readAsDataURL  
+            };
+        }])
+
+        // 图片上传预览
+        app.directive('file', ['$parse', 'fileReader', function ($parse, fileReader) {  
+            return {
+                restrict: 'A',
+                link: function(scope, element, attrs, ngModel) {
+
+                    var model = $parse(attrs.file);
+                    var modelSetter = model.assign;
+                    console.log(modelSetter)
+                    element.bind('change', function(event){
+                        scope.$apply(function(){
+                            modelSetter(scope, element[0].files[0]);
+                        });
+                        //附件预览                  
+                        scope.imgupload = (event.srcElement || event.target).files[0];
+                        getFile(scope.imgupload, scope);
+
+                            //获得预览图地址并且把file对象放入上传合集内
+                            function getFile (imgupload, scope) {
+                             if(!imgupload) {
+                                 return;
+                             }
+                             fileReader.readAsDataUrl(imgupload, scope)
+                             .then(function(result) {
+                                  scope.imgshows.push(result)
+                                  var file = document.querySelector('input[type=file]').files[0];
+                                  scope.uploadimgs.push(file)
+                                  //这里是放着传给后台的数据file，下面controller的时候会有
+                              });
+                         };
+                     });
+                }
+            };
+        }])  
+
+        // 删除功能
+        app .directive('uploadimg', function () {  
+            return {
+                restrict: 'E', 
+                scope: {
+                    uploadimgs: "="
+                },
+                templateUrl: './js/directives/uploadimg/uploadimg.html',            
+                link: function(scope, element, attrs) {
+                        scope.imgshows = []//预览图片合集放的是src       
+                        scope.uploadimg_del = function(index,imgs) {    
+                            scope.imgshows.splice(index,1);
+                            scope.uploadimgs.splice(index,1);
+                        }
+                    }
+                }
+            })  
+        </script>
+    </body>
+    </html>
