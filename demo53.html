@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app="directiveModule">
+<head>
+    <title>自定义指令</title>
+    <script src="js/angular.js" type="text/javascript"></script>
+</head>
+<body>
+    <hello-world></hello-world>
+    <div hello-world></div>
+    <div class="hello-world"></div>
+    <!-- directive:hello-world -->
+    <x-hello-world></x-hello-world>
+    <data-hello-world></data-hello-world>
+
+    <script type="text/javascript">
+        var directiveModule = angular.module("directiveModule",[]);
+
+        directiveModule.directive("helloWorld",function(){
+            return{
+            	restrict:"ACEM",
+            	replace:true,
+            	template:"<h1>First Directive!</h1>"
+            }
+        });
+        
+    </script>
+</body>
+</html>
