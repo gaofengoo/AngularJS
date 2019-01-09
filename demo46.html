@@ -9,7 +9,6 @@
 </style>
 
 <!--导入文件-->
-<!-- <script src="js/jquery.js"></script> -->
 <script src="js/angular.min.js"></script>
 <script>
 	var sapp=angular.module("myapp",[]);
@@ -35,7 +34,7 @@
 						price:$scope.price,
 						count:$scope.count
 					};
-					$scope.stus.(good);
+					$scope.stus.push(good);
 				}
 			}
 			// 删除的方法
