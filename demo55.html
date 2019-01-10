@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<title>AngularJS 手风琴导航</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript">
+		var app = angular.module("app", []);
+		app.controller("myApp",function($scope){
+			$scope.dates = [
+				{
+					headOne:"A",
+					headTwo:[
+						{
+							someThing:"1"
+						},{
+							someThing:"2"
+						},{
+							someThing:"3"
+						}
+					]
+				},{
+					headOne:"B",
+					headTwo:[
+						{
+							someThing:"4"
+						},{
+							someThing:"5"
+						},{
+							someThing:"6"
+						}
+					]
+				},{
+					headOne:"C",
+					headTwo:[
+						{
+							someThing:"7"
+						},{
+							someThing:"8"
+						},{
+							someThing:"9"
+						}
+					]
+				}
+			];
+
+
+		});
+
+	</script>
+</head>
+<body ng-controller="myApp">
+	<ul id="head">
+		<li ng-repeat="date in dates">
+			<span ng-bind="date.headOne"></span>
+			<ul id="head2" ng-show="expression">
+				<li ng-repeat="two in date.headTwo">
+					<span ng-bind="two.someThing"></span>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>
