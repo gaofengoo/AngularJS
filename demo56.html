@@ -29,6 +29,18 @@
 			float: left;
 			margin-right: 10px;
 		}
+		.imgTrue{
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			background-image: url(images/radio_on.png);
+		}
+		.imgFalse{
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			background-image: url(images/radio_off.png);
+		}
 	</style>
 	<script type="text/javascript" src="js/angular.js"></script>
 	<script type="text/javascript">
@@ -42,36 +54,32 @@
 
 			$scope.menus = [
 				{
-					name:"a",
-					state:false
+					name:"a"
 				},{
-					name:"b",
-					state:false
+					name:"b"
 				},{
-					name:"c",
-					state:false
+					name:"c"
 				},{
-					name:"d",
-					state:false
+					name:"d"
 				},{
-					name:"e",
-					state:false
+					name:"e"
 				},{
-					name:"f",
-					state:false
+					name:"f"
 				},{
-					name:"g",
-					state:false
+					name:"g"
 				}
 			];
 
-
+			$scope.menus.forEach(function(venue){
+				venue.img = "imgFalse";
+			});
 
 			$scope.checkboxClick = function(menu){
-				$scope.menus.forEach(function(value){
-					value.state = false;
-				});
-				menu.state = true;
+				if(menu.img == "imgTrue"){
+					menu.img = "imgFalse";
+				}else{
+					menu.img = "imgTrue";
+				}
 			};	
 
 		});
@@ -95,8 +103,8 @@
 
 	<ul id="checkbox">
 		<li ng-repeat="menu in menus" ng-click="checkboxClick(menu)">
-			<span ng-show="!menu.state"><img src="images/radio_off.png" width="16" height="16" />{{menu.name}}</span>
-			<span ng-show="menu.state"><img src="images/radio_on.png" width="16" height="16" />{{menu.name}}</span>
+			<span class="{{menu.img}}"></span>
+			<span>{{menu.name}}</span>
 		</li>
 	</ul>
 </body>
