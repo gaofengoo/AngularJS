@@ -7,6 +7,7 @@
 	<script type="text/javascript">
 		var app = angular.module("app", []);
 		app.controller("myApp",function($scope){
+
 			$scope.dates = [
 				{
 					headOne:"A",
@@ -44,18 +45,42 @@
 				}
 			];
 
+			$scope.headClick = function(date){
+				if($scope.b == date){
+					$scope.b = !date;
+				}else{
+					$scope.b = date;
+				}
+			};
+
+			$scope.childClick = function(two){
+				if($scope.c == two){
+					$scope.c = !two;
+				}else{
+					$scope.c = two;
+				}
+				console.log($scope.c);
+			};
 
 		});
 
 	</script>
+	<style type="text/css">
+		.head{
+			color: #f00;
+		}
+		.child{
+			color: #0f0;
+		}
+	</style>
 </head>
 <body ng-controller="myApp">
 	<ul id="head">
 		<li ng-repeat="date in dates">
-			<span ng-bind="date.headOne"></span>
-			<ul id="head2" ng-show="expression">
+			<span ng-bind="date.headOne" ng-click="headClick(date.headOne)" ng-class="b == date.headOne ? 'head' : '' "></span>
+			<ul id="head2" ng-show="b === date.headOne">
 				<li ng-repeat="two in date.headTwo">
-					<span ng-bind="two.someThing"></span>
+					<span ng-bind="two.someThing" ng-click="childClick(two.someThing)" ng-class="c == two.someThing ? 'child' : '' "></span>
 				</li>
 			</ul>
 		</li>

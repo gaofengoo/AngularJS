@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<title>表单单选复选</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;	
+		}
+		#radio, #checkbox{
+			overflow: hidden;
+			cursor: pointer;
+			line-height: 20px;
+		}
+		#radio span{
+			display: inline-block;
+			float: left;
+			margin-right: 10px;
+		}
+		#radio span img{
+			vertical-align: middle;
+		}
+		#checkbox li{
+			display: inline-block;
+			float: left;
+			margin-right: 10px;
+		}
+	</style>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript">
+		var app = angular.module("app", []);
+		app.controller("myCtrl",function($scope){
+			$scope.raidoShow = false;
+
+			$scope.radioClick = function(){
+				$scope.raidoShow = !$scope.raidoShow;
+			};
+
+			$scope.menus = [
+				{
+					name:"a",
+					state:false
+				},{
+					name:"b",
+					state:false
+				},{
+					name:"c",
+					state:false
+				},{
+					name:"d",
+					state:false
+				},{
+					name:"e",
+					state:false
+				},{
+					name:"f",
+					state:false
+				},{
+					name:"g",
+					state:false
+				}
+			];
+
+
+
+			$scope.checkboxClick = function(menu){
+				$scope.menus.forEach(function(value){
+					value.state = false;
+				});
+				menu.state = true;
+			};	
+
+		});
+	</script>
+</head>
+<body ng-controller="myCtrl">
+	<div id="radio">
+		<span ng-click="radioClick()" ng-show="!raidoShow">
+			<img src="images/radio_on.png" width="16" height="16" />开
+		</span>
+		<span ng-click="radioClick()" ng-show="raidoShow">
+			<img src="images/radio_off.png" width="16" height="16" />开
+		</span>
+		<span ng-click="radioClick()" ng-show="raidoShow">
+			<img src="images/radio_on.png" width="16" height="16" />关
+		</span>
+		<span ng-click="radioClick()" ng-show="!raidoShow">
+			<img src="images/radio_off.png" width="16" height="16" />关
+		</span>
+	</div><br />
+
+	<ul id="checkbox">
+		<li ng-repeat="menu in menus" ng-click="checkboxClick(menu)">
+			<span ng-show="!menu.state"><img src="images/radio_off.png" width="16" height="16" />{{menu.name}}</span>
+			<span ng-show="menu.state"><img src="images/radio_on.png" width="16" height="16" />{{menu.name}}</span>
+		</li>
+	</ul>
+</body>
+</html>
