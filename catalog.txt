@@ -55,6 +55,6 @@ demo52.html				多图片上传预览
 demo53.html				自定义指令
 demo54.html				开关按钮
 demo55.html				AngularJS 手风琴导航 自制
-demo56.html				
+demo56.html				表单单选复选
 demo57.html
 demo58.html
