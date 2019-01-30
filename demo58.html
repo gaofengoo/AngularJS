@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<title>点击选中当前样式</title>
+	<link rel="stylesheet" type="text/css" href="css/click-style.css" />
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript" src="js/click-style.js"></script>
+</head>
+<body ng-controller="myCtrl">
+	<ul>
+		<li ng-repeat="li in lis" ng-bind="li.name" ng-click="liClick($index)" ng-class="{active:$index == selectLi}"></li>
+	</ul>
+</body>
+</html>
