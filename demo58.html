@@ -9,7 +9,7 @@
 </head>
 <body ng-controller="myCtrl">
 	<ul>
-		<li ng-repeat="li in lis" ng-bind="li.name" ng-click="liClick($index)" ng-class="{active:$index == selectLi}"></li>
+		<li ng-repeat="li in lis" ng-bind="li.name" ng-click="liClick($index)" ng-class="{'active':$index == selectLi}"></li>
 	</ul>
 </body>
 </html>
