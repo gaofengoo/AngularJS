@@ -58,3 +58,4 @@ demo55.html				AngularJS 手风琴导航 自制
 demo56.html				表单单选复选
 demo57.html				ui-sref传递参数
 demo58.html				点击选中当前样式
+demo59.html 			导航样式选中
