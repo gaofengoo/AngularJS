@@ -103,7 +103,7 @@
 
 	<ul id="checkbox">
 		<li ng-repeat="menu in menus" ng-click="checkboxClick(menu)">
-			<span class="{{menu.img}}"></span>
+			<span ng-class="menu.img"></span>
 			<span>{{menu.name}}</span>
 		</li>
 	</ul>
