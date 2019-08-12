@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8"> 
+    <title>禁止浏览器输入框选中弹出输入弹框</title>
+    <script src="js/angular.min.js"></script>
+</head>
+<body ng-controller="MainController">
+    <input ng-model="data" id="inputFocus" />
+    <br />
+	<div ng-click="dataAdd()">点击</div>
+<script>
+    var myApp = angular.module('myApp',[]);
+    myApp.controller("MainController",function($scope){
+        $scope.data = 1;
+        var inputFocus = document.getElementById("inputFocus");
+
+        $scope.dataAdd = function () {
+			$scope.data ++;
+			console.log($scope.data);
+        };
+
+        setInterval(function () {
+        	inputFocus.focus();
+        	// console.log("定时器");
+        },100);
+		
+		inputFocus.onfocus = function () {
+			console.log("输入框聚焦");
+		};
+
+    });
+</script>
+</body>
+</html>

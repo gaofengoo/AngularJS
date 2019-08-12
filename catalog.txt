@@ -60,3 +60,29 @@ demo57.html				ui-sref传递参数
 demo58.html				点击选中当前样式
 demo59.html 			导航样式选中
 demo60.html 			购物车
+demo61.html 			禁止浏览器输入框选中弹出输入弹框
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
